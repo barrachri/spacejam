@@ -2,7 +2,7 @@
 
 from copy import copy
 from enum import Enum
-from typing import Tuple, Set
+from typing import Set, Tuple
 from dataclasses import field, dataclass
 
 
