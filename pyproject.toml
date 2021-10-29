@@ -19,7 +19,6 @@ pre-commit = { version = "*", optional = true }
 colorama = { version = "*", optional = true }
 watchdog = { version = "*", optional = true }
 pdbpp = { version = "*", optional = true }
-python-semantic-release = "^7.11.0"
 isort = "*"
 flake8 = { version = ">=3.9.0" }
 flake8-bugbear = "*"
@@ -34,8 +33,6 @@ pytest = "^6.2.2"
 pytest-cov = "*"
 pytest-xdist = "*"
 pytest-mock = "*"
-mypy = "*"
-coverage = "*"
 pydocstyle = "*"
 black = "*"
 
@@ -64,8 +61,6 @@ test = [
     "pytest-cov",
     "pytest-xdist",
     "pytest-mock",
-    "mypy",
-    "coverage",
     "wily",
     "pydocstyle",
     "black",
