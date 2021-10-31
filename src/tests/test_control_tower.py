@@ -1,6 +1,6 @@
 """Tests for the and RoverCommand ControlTower classes."""
 
-from typing import Set, List, Tuple
+from typing import Set, Tuple
 from contextlib import contextmanager
 
 import pytest
@@ -16,10 +16,12 @@ def rover(request) -> Rover:
     heading = request.param[1]
     return Rover.from_coordinates(coordinates, heading)
 
+
 @contextmanager
 def does_not_raise():
     """Yield for a test that is not expected to raise."""
     yield
+
 
 @pytest.mark.parametrize(
     "rover",
@@ -106,13 +108,14 @@ def test_execute_commands(
 
 
 @pytest.mark.parametrize(
-    "initial_coordinates,initial_heading,obstacles,commands,final_coordinates,final_heading,final_status",
+    "initial_coordinates,initial_heading,obstacles,commands,final_coordinates, "
+    "final_heading,final_status",
     [
         ((0, 0), Heading.N, {(0, 3)}, "FFFF", (0, 2), Heading.N, "STUCK"),
-        # ((0, 1), Heading.W, 'FLFFFRFLBB', (-2, 0), Heading.S),
-        # ((-1, -1), Heading.W, 'FLFFFRFLB'[::-1], (-3, -3), Heading.S),
-        # ((1, 0), Heading.E, 'FRFLB', (1, -1), Heading.E),
-        # ((0, -2), Heading.S, 'B', (0, -1), Heading.S),
+        ((0, 1), Heading.W, {(1, 1)}, "FLFFFRFLBB", (-2, 0), Heading.S, "OK"),
+        ((-1, -1), Heading.W, {}, "FLFFFRFLB"[::-1], (-3, -3), Heading.S, "OK"),
+        ((1, 0), Heading.E, {}, "FRFLB", (1, -1), Heading.E, "OK"),
+        ((0, -2), Heading.S, {(1, 0)}, "B", (0, -1), Heading.S, "OK"),
     ],
 )
 def test_execute_commands_with_obstacles(
